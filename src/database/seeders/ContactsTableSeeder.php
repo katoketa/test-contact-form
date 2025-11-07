@@ -16,8 +16,8 @@ class ContactsTableSeeder extends Seeder
     {
         $param = [
             'category_id' => 2,
-            'first_name' => '山田',
-            'last_name' => '太郎',
+            'first_name' => '太郎',
+            'last_name' => '山田',
             'gender' => 1,
             'email' => 'test@example.com',
             'tel' => '08012345678',
@@ -25,7 +25,7 @@ class ContactsTableSeeder extends Seeder
             'building' => '千駄ヶ谷マンション101',
             'detail' => '届いた商品が注文した商品ではありませんでした。\r\n商品の取り替えをお願いします。'
         ];
-        for ($i = 1; $i < 20; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             DB::table('contacts')->insert($param);
         }
     }
