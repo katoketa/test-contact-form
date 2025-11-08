@@ -5,13 +5,6 @@
 @endsection
 
 @section('content')
-@if($errors->any())
-<ul>
-    @foreach($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-</ul>
-@endif
 <div class="content">
     <div class="content__title">
         <h2>Contact</h2>
@@ -24,6 +17,16 @@
                     <th class="contact-form__header contact-form__header--required">お名前</th>
                     <td class="contact-form__item">
                         <div class="contact-form__item-error">
+                            @if ($errors->has('last_name') && $errors->has('first_name'))
+                                名前を入力してください
+                            @else
+                                @error('last_name')
+                                {{ $message }}
+                                @enderror
+                                @error('first_name')
+                                {{ $message }}
+                                @enderror
+                            @endif
                         </div>
                         <div class="contact-form__item-name">
                             <input type="text" name="last_name" placeholder="例: 山田" value="{{ old('last_name') }}">
@@ -34,6 +37,11 @@
                 <tr class="contact-form__row">
                     <th class="contact-form__header contact-form__header--required">性別</th>
                     <td class="contact-form__item">
+                        <div class="contact-form__item-error">
+                            @error('gender')
+                            {{ $message }}
+                            @enderror
+                        </div>
                         <div class="contact-form__item-radio">
                             <input type="radio" name="gender" id="man" value="1">
                             <label for="man">男性</label>
@@ -47,6 +55,11 @@
                 <tr class="contact-form__row">
                     <th class="contact-form__header contact-form__header--required">メールアドレス</th>
                     <td class="contact-form__item">
+                        <div class="contact-form__item-error">
+                            @error('email')
+                            {{ $message }}
+                            @enderror
+                        </div>
                         <div class="contact-form__item-email">
                             <input type="email" name="email" placeholder="例: test@example.com" value="{{ old('email') }}">
                         </div>
@@ -55,6 +68,21 @@
                 <tr class="contact-form__row">
                     <th class="contact-form__header contact-form__header--required">電話番号</th>
                     <td class="contact-form__item">
+                        <div class="contact-form__item-error">
+                            @if ($errors->has('tel1'))
+                                @error('tel1')
+                                {{ $message }}
+                                @enderror
+                            @elseif ($errors->has('tel2'))
+                                @error('tel2')
+                                {{ $message }}
+                                @enderror
+                            @else
+                                @error('tel3')
+                                {{ $message }}
+                                @enderror
+                            @endif
+                        </div>
                         <div class="contact-form__item-tel">
                             <input type="tel" name="tel1" placeholder="080" value="{{ old('tel1') }}">
                             <span>-</span>
@@ -67,6 +95,11 @@
                 <tr class="contact-form__row">
                     <th class="contact-form__header contact-form__header--required">住所</th>
                     <td class="contact-form__item">
+                        <div class="contact-form__item-error">
+                            @error('address')
+                            {{ $message }}
+                            @enderror
+                        </div>
                         <div class="contact-form__item-address">
                             <input type="text" name="address" placeholder="例: 東京渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}">
                         </div>
@@ -83,6 +116,11 @@
                 <tr class="contact-form__row">
                     <th class="contact-form__header contact-form__header--required">お問い合わせの種類</th>
                     <td class="contact-form__item">
+                        <div class="contact-form__item-error">
+                            @error('category_id')
+                            {{ $message }}
+                            @enderror
+                        </div>
                         <div class="contact-form__item-category">
                             <select name="category_id">
                                 <option value="" selected hidden>選択してください</option>
@@ -96,6 +134,11 @@
                 <tr class="contact-form__row">
                     <th class="contact-form__header contact-form__header--required">お問い合わせ内容</th>
                     <td class="contact-form__item">
+                        <div class="contact-form__item-error">
+                            @error('detail')
+                            {{ $message }}
+                            @enderror
+                        </div>
                         <div class="contact-form__item-detail">
                             <textarea name="detail" placeholder="お問い合わせ内容をご記載ください">{{ old('detail') }}</textarea>
                         </div>

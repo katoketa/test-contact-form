@@ -43,6 +43,10 @@
     padding: 10px;
 }
 
+.contact-form__item-error {
+    color: #f00;
+}
+
 .contact-form__item input, .contact-form__item select, .contact-form__item textarea {
     border: none;
     border-radius: 3px;
